@@ -22,7 +22,11 @@ function EditRealState(props) {
   // Query a la API
   useEffect(() => {
     const queryPI = async () => {
-      const realState = await clientAxios.get(`/real-state/${id}`);
+      const realState = await clientAxios.get(`/real-state/${id}`, {
+        headers: {
+            Authorization : `Bearer ${auth.token}`
+        }
+    })
       console.log(realState, "realState");
       dataRealState(realState.data);
     };
@@ -57,7 +61,11 @@ function EditRealState(props) {
         text: "All fields are required",
       });
     } else {
-      clientAxios.put(`/real-state/${realState.id}`, realState).then((res) => {
+      clientAxios.put(`/real-state/${realState.id}`, realState, {
+        headers: {
+            Authorization : `Bearer ${auth.token}`
+        }
+    }).then((res) => {
         // validar si hay errores de mongo
         if (res.data.code === 11000) {
           Swal.fire({

@@ -32,7 +32,13 @@ function App() {
             <Navegation />
             <main className="caja-contenido col-9">
               <Routes>
-                <Route exact path="/" element={<Users />} />
+                <Route exact path="/" element={<Login />} />
+                <Route
+                  exact
+                  path="/real-state/list"
+                  element={<RealStateList />}
+                />
+                <Route exact path="/users" element={<Users />} />
                 <Route
                   exact
                   path="/real-state/list"

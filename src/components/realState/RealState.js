@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import clienteAxios from '../../config/axios';
+import { CRMContext } from "../../context/CRMContext";
 
 function RealState({realState}) {
-
-
+    const [auth] = useContext(CRMContext);
+    const navigate = useNavigate();
     // elimina un producto
     const deleteRealState = id => {
         Swal.fire({
@@ -20,8 +21,11 @@ function RealState({realState}) {
         }).then((result) => {
             if (result.value) {
               // eliminar en la rest api
-              clienteAxios.delete(`/real-state/${id}`)
-                .then(res => {
+              clienteAxios.delete(`/real-state/${id}`, {
+                headers: {
+                    Authorization : `Bearer ${auth.token}`
+                }
+            }).then(res => {
                     if(res.status === 200) {
                         Swal.fire(
                             'Removed',

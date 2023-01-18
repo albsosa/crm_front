@@ -5,9 +5,11 @@ import User from './User';
 import { CRMContext } from "../../context/CRMContext";
 
 function Users() {
+  
   const navigate = useNavigate();
   const [auth] = useContext(CRMContext);
   const [users, saveUsers] = useState([]);
+  
   const API = async () => {
     try {
       const users = await clientAxios.get("/user", {

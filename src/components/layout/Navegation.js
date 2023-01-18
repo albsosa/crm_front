@@ -11,7 +11,7 @@ const Navegation = () => {
       <h2>Admin</h2>
 
       <nav className="navegacion">
-        <Link to={"/"} className="clientes">
+        <Link to={"/users"} className="clientes">
           Users
         </Link>
         <Link to={"/real-state/list"} className="productos">
